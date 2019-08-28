@@ -14,66 +14,66 @@ if (process.platform === 'win32') {
 
 let commands = {
   windows: {
-    screensaver (resolve) {
+    screensaver(resolve) {
       exec('rundll32 user32.dll,LockWorkStation', resolve)
     },
-    lock (resolve) {
+    lock(resolve) {
       exec('rundll32 user32.dll,LockWorkStation', resolve)
     },
-    shutdown (resolve) {
+    shutdown(resolve) {
       exec('shutdown -s', resolve)
     },
-    logout (resolve) {
+    logout(resolve) {
       exec('shutdown -l', resolve)
     },
-    restart (resolve) {
+    restart(resolve) {
       exec('shutdown -r', resolve)
     },
-    emptytrash (resolve) {
+    emptytrash(resolve) {
       emptyTrash().then(() => {
         resolve('Trash Emptied');
       })
     }
   },
   linux: {
-    screensaver (resolve) {
+    screensaver(resolve) {
       exec('gnome-screensaver-command -a', resolve)
     },
-    lock (resolve) {
-      exec('gnome-screensaver-command -l', resolve)
+    lock(resolve) {
+      exec('i3lock -c 000000', resolve)
     },
-    shutdown (resolve) {
+    shutdown(resolve) {
       exec('systemctl poweroff', resolve)
     },
-    logout (resolve) {
+    logout(resolve) {
       exec('logout', resolve)
     },
-    restart (resolve) {
+    restart(resolve) {
       exec('systemctl reboot', resolve)
     },
-    emptytrash (resolve) {
+    emptytrash(resolve) {
       emptyTrash().then(() => {
         resolve('Trash Emptied');
       })
     }
   },
   mac: {
-    screensaver (resolve) {
+    screensaver(resolve) {
       exec('open -a ScreenSaverEngine.app', resolve)
     },
-    lock (resolve) {
+    lock(resolve) {
       exec('/System/Library/CoreServices/Menu\\ Extras/User.menu/Contents/Resources/CGSession -suspend', resolve)
     },
-    shutdown (resolve) {
+    shutdown(resolve) {
       exec('osascript -e \'tell app "System Events" to shut down\'', resolve)
     },
-    logout (resolve) {
+    logout(resolve) {
       exec('osascript -e \'tell application "System Events" to log out\'', resolve)
     },
-    restart (resolve) {
+    restart(resolve) {
       exec('osascript -e \'tell app "System Events" to restart\'', resolve)
     },
-    emptytrash (resolve) {
+    emptytrash(resolve) {
       emptyTrash().then(() => {
         resolve('Trash Emptied');
       })
